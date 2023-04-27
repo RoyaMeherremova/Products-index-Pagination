@@ -1,6 +1,8 @@
 ﻿@model Paginate<ProductListVM>
 @{
     ViewData["Title"] = "Index";
+    int count = 1;
+    int changeCount = ((Model.Datas.Count() * Model.CurrentPage) - (Model.Datas.Count() - 1));
     
 }
 
@@ -10,7 +12,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    
+                    <th>
+                        #
+                    </th>
+                
                     <th>
                         Image
                     </th>
@@ -41,6 +46,9 @@
                 @foreach (var product in Model.Datas)
                 {
                     <tr>
+                        <td class="py-1">
+                            @changeCount
+                        </td>
                       
                          <td>
                             <img src="~/img/@product.MainImage"/>
@@ -69,10 +77,11 @@
                            </form>
                            
                         </td>
-
+                        
                     
 
                     </tr>
+                    changeCount++;
                 }
 
             </tbody>
